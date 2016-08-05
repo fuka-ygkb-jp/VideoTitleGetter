@@ -1,0 +1,13 @@
+c:\users\yuichi\documents\visual studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\bin\Debug\VideoTitleGetter.exe.config
+c:\users\yuichi\documents\visual studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\bin\Debug\VideoTitleGetter.exe
+c:\users\yuichi\documents\visual studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\bin\Debug\VideoTitleGetter.pdb
+c:\users\yuichi\documents\visual studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\obj\Debug\VideoTitleGetter.csprojResolveAssemblyReference.cache
+c:\users\yuichi\documents\visual studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\obj\Debug\VideoTitleGetter.Form1.resources
+c:\users\yuichi\documents\visual studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\obj\Debug\VideoTitleGetter.csproj.GenerateResource.Cache
+c:\users\yuichi\documents\visual studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\obj\Debug\VideoTitleGetter.exe
+c:\users\yuichi\documents\visual studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\obj\Debug\VideoTitleGetter.pdb
+C:\Users\yuichi\Documents\Visual Studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\bin\Debug\HtmlAgilityPack.dll
+C:\Users\yuichi\Documents\Visual Studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\yuichi\Documents\Visual Studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\bin\Debug\HtmlAgilityPack.xml
+C:\Users\yuichi\Documents\Visual Studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\obj\Debug\Yugen.VideoTitleGetter.Properties.Resources.resources
+C:\Users\yuichi\Documents\Visual Studio 2015\Projects\VideoTitleGetter\VideoTitleGetter\bin\Debug\Readme.txt

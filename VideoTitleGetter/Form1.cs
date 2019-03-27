@@ -16,36 +16,44 @@ namespace VideoTitleGetter
             InitializeComponent();
         }
 
-        #region "定数"
-        /// <summary>型番を示す正規表現</summary>
-        Regex _itemCode = new Regex(
-            @"([a-z]+-?\d+)",
-            RegexOptions.Singleline | RegexOptions.IgnoreCase);
-        #endregion
-
         #region "イベント"
         /// <summary>フォーム初期化</summary>
         private void Form1_Load(object sender, EventArgs e)
         {
             clearItems();
-            slbStatus.Text = "覚悟完了";
+
+            // バージョン番号取得
+            this.Text += " v" + Application.ProductVersion;
+
+            slbStatus.Text = "リネームしたいファイルをウインドウにドラッグ＆ドロップしてください";
         }
 
-        /// <summary>ドラッグされた</summary>
+        /// <summary>ファイルがドラッグされた</summary>
         private void Form1_DragEnter(object sender, DragEventArgs e)
         {
-            //ドラッグされたデータ形式がファイルのときはコピー。それ以外は受け付けない
-            e.Effect =
-                e.Data.GetDataPresent(DataFormats.FileDrop)
-                ? DragDropEffects.Copy
-                : DragDropEffects.None;     //ファイル以外は受け付けない
+            e.Effect = DragDropEffects.None;
+
+            // フォルダー・ファイルじゃない
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+                return;
+
+            string[] dragged = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+            // 複数選択されている・全く選択されていない
+            if (dragged.Length != 1)
+                return;
+
+            // ファイルにだけ反応する
+            if (System.IO.File.Exists(dragged[0]))
+                e.Effect = DragDropEffects.Copy;
         }
 
         /// <summary>ドロップされた</summary>
         private void Form1_DragDrop(object sender, DragEventArgs e)
         {
             // ファイルが渡されていなければ何もしない
-            if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+                return;
 
             clearItems();
 
@@ -58,6 +66,8 @@ namespace VideoTitleGetter
             // 型番プルダウン表示
             putItemCodeCombo(
                 getItemCodes(Path.GetFileNameWithoutExtension(fullPath)));
+
+            slbStatus.Text = "型番候補を確認し、検索先を選んで、「検索」ボタンを押してください";
         }
 
         /// <summary>ファイル名候補が選択された</summary>
@@ -67,6 +77,7 @@ namespace VideoTitleGetter
             if (lstSearched.SelectedItem == null) return;
 
             txtRenFile.Text = lstSearched.SelectedItem.ToString().Trim();
+            btnRename.Enabled = true;
         }
 
         /// <summary>ファイル名候補一覧をシマシマにする</summary>
@@ -98,7 +109,6 @@ namespace VideoTitleGetter
             e.DrawFocusRectangle();
         }
 
-
         /// <summary>検索ボタンが押された</summary>
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -120,6 +130,13 @@ namespace VideoTitleGetter
             }
         }
 
+        /// <summary>型番候補欄の内容が変わった</summary>
+        private void cmbItemCode_TextChanged(object sender, EventArgs e)
+        {
+            // 型番候補欄が入力済みの時だけ検索ボタンを押せる
+            btnSearch.Enabled = (cmbItemCode.Text.Length > 0);
+        }
+
         /// <summary>変更後ファイル名欄でキーが押された</summary>
         private void txtRenFile_KeyDown(object sender, KeyEventArgs e)
         {
@@ -128,21 +145,35 @@ namespace VideoTitleGetter
                 rename();
             }
         }
+
+        /// <summary>変更後ファイル名欄が変更された</summary>
+        private void txtRenFile_TextChanged(object sender, EventArgs e)
+        {
+            // 型番候補欄が入力済みの時だけ検索ボタンを押せる
+            btnRename.Enabled = (txtRenFile.Text.Length > 0);
+        }
         #endregion
 
         #region "サブルーチン"
         /// <summary>コントロール内容初期化</summary>
         private void clearItems()
         {
+            // ファイル名情報
             txtFileName.Text = "";
             txtFilePath.Text = "";
-            txtRenFile.Text = "";
-            lblRenExt.Text = "";
 
+            // 型番候補
             cmbItemCode.Items.Clear();
             cmbItemCode.Text = "";
+            btnSearch.Enabled = false;
 
+            // ファイル名候補
             lstSearched.Items.Clear();
+
+            // 変更後ファイル名
+            txtRenFile.Text = "";
+            lblRenExt.Text = "";
+            btnRename.Enabled = false;
         }
 
         /// <summary>ファイル情報を表示</summary>
@@ -176,16 +207,38 @@ namespace VideoTitleGetter
         /// <returns>型番候補一覧</returns>
         private List<string> getItemCodes(string filename)
         {
-            var retVal = new List<string>();
-            var mc = _itemCode.Matches(filename);
+            var retVal = new List<string>();        //一覧全体
 
+            /// <summary>型番を示す正規表現</summary>
+            //FC2型番
+            var CODE_FC2 = new Regex(
+                @"(fc2)[\s-_]?(?:ppv)*[\s-_]?(\d+)",
+                RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            //var CODE_FC2 = new Regex(
+            //    @"(fc2)[\s-_]?ppv[\s-_]?(\d+)",
+            //    RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            //一般的な型番
+            var CODE_NORMAL = new Regex(
+                @"([a-z]+)-?(\d+)",
+                RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
+
+            var work = new List<string>();
+
+            MatchCollection mc = CODE_FC2.IsMatch(filename) ? CODE_FC2.Matches(filename)
+                : CODE_NORMAL.Matches(filename);
+
+            //型番(ABC-1234)を英字部(ABC)と数字部(1234)に分け、ハイフン区切り・スペース区切りのパターンを提案する
             foreach (Match m in mc)
             {
-                retVal.Add(m.Value);
+                work.Add(m.Value);
+                work.Add(m.Groups[1].Value + "-" + m.Groups[2].Value);    //ハイフン区切り提案
+                work.Add(m.Groups[1].Value + " " + m.Groups[2].Value);    //スペース区切り提案
             }
+            //入力と提案が重複する場合は除外する
+            retVal.AddRange(work.Distinct().OrderBy(s => s).ToList());
 
-            // 最下行にファイル名そのものを載せる
-            if (mc.Count > 0) retVal.Add("--------------------");
+            //最下行にファイル名そのものを載せる
+            if (mc.Count > 0) retVal.Add("[元ファイル名]--------------------");   //候補が有るときは区切りが無いと見にくい
             retVal.Add(filename);
 
             return retVal;
@@ -200,6 +253,8 @@ namespace VideoTitleGetter
             //マウスカーソルを砂時計にする
             var preCursor = Cursor.Current;
             Cursor.Current = Cursors.WaitCursor;
+
+            slbStatus.Text = "検索中...";
 
             //NyaaTorrentから検索結果を取得
             var list = selectScraper().GetFilenames(cmbItemCode.Text);
@@ -220,38 +275,46 @@ namespace VideoTitleGetter
             Cursor.Current = preCursor;
         }
 
+        /// <summary>ラジオボタンの選択に対応するScraperを返す</summary>
+        /// <returns>ラジオボタンに対応するScraper</returns>
         private IScraper selectScraper()
         {
-            if (rbtSearchNyaa.Checked) return new NyaaTorrentScraper();
+            if (rbtSearchNyaaSi.Checked) return new NyaaSiScraper();
+            if (rbtSearchNyaa.Checked) return new NyaaPantsuScraper();
             if (rbtSearchGoogle.Checked) return new GoogleScraper();
             //if (rbtSearchH_Era.Checked) return new hEraScraper();
 
             //デフォルト
-            return new NyaaTorrentScraper();
+            return new NyaaSiScraper();
         }
 
+        /// <summary>ファイル名変更</summary>
         private void rename()
         {
+            //変更元ファイル確定
+            var frFullPath = Path.Combine(txtFilePath.Text, txtFileName.Text);
+
+            //変更先ファイル確定
+            var toRenName = txtRenFile.Text.Trim();     //誤入力で空白ゴミ入る事あるので除く
+            var toFileName = toRenName + lblRenExt.Text;
+            var toFullPath = Path.Combine(txtFilePath.Text, toFileName);
+
+            // ファイル名が空なら何もしない
+            if (frFullPath.Trim() == "") return;
+            if (toRenName == "") return;
+
             try
             {
-                var fr = Path.Combine(txtFilePath.Text, txtFileName.Text);
-                var to = Path.Combine(
-                    txtFilePath.Text,
-                    txtRenFile.Text + lblRenExt.Text
-                );
+                System.IO.File.Move(frFullPath, toFullPath);
 
-                if (to.Trim() == "") return;
-
-                System.IO.File.Move(fr, to);
                 clearItems();
-                slbStatus.Text = "ファイル名の変更が完了しました";
+                slbStatus.Text = "ファイル名を変更しました";
             }
             catch (Exception e)
             {
-                slbStatus.Text = string.Format("ファイル名の変更に失敗しました({0})", e.Message);
+                slbStatus.Text = string.Format("ファイル名の変更が失敗しました(原因：{0})", e.Message);
             }
         }
         #endregion
-
     }
 }

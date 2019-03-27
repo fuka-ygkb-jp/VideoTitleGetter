@@ -10,6 +10,8 @@ using System.Web;
 namespace Yugen.Tools.Web.Scraper
 {
     /// <summary>NyaaTorrentをスクレイプする</summary>
+    /// <remarks>閉鎖されたので基本的には使わない</remarks>
+    [Obsolete("NyaaTorrentは閉鎖されています")]
     class NyaaTorrentScraper : IScraper
     {
         #region "定数"

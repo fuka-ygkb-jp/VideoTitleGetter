@@ -48,6 +48,7 @@
             this.lblRenExt = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rbtSearchNyaaSi = new System.Windows.Forms.RadioButton();
             this.rbtSearchGoogle = new System.Windows.Forms.RadioButton();
             this.rbtSearchNyaa = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
@@ -59,18 +60,18 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 335);
+            this.label1.Location = new System.Drawing.Point(9, 335);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 12);
+            this.label1.Size = new System.Drawing.Size(101, 14);
             this.label1.TabIndex = 1;
             this.label1.Text = "変更後ファイル名";
             // 
             // btnRename
             // 
             this.btnRename.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRename.Location = new System.Drawing.Point(490, 343);
+            this.btnRename.Location = new System.Drawing.Point(470, 352);
             this.btnRename.Name = "btnRename";
-            this.btnRename.Size = new System.Drawing.Size(122, 38);
+            this.btnRename.Size = new System.Drawing.Size(142, 56);
             this.btnRename.TabIndex = 2;
             this.btnRename.Text = "ファイル名変更";
             this.btnRename.UseVisualStyleBackColor = true;
@@ -82,13 +83,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstSearched.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.lstSearched.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lstSearched.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lstSearched.FormattingEnabled = true;
             this.lstSearched.HorizontalScrollbar = true;
             this.lstSearched.ItemHeight = 15;
-            this.lstSearched.Location = new System.Drawing.Point(13, 157);
+            this.lstSearched.Location = new System.Drawing.Point(12, 199);
             this.lstSearched.Name = "lstSearched";
-            this.lstSearched.Size = new System.Drawing.Size(599, 169);
+            this.lstSearched.Size = new System.Drawing.Size(600, 124);
             this.lstSearched.TabIndex = 4;
             this.lstSearched.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstSearched_DrawItem);
             this.lstSearched.SelectedIndexChanged += new System.EventHandler(this.lstSearched_SelectedIndexChanged);
@@ -96,18 +97,18 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 142);
+            this.label3.Location = new System.Drawing.Point(9, 182);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 12);
+            this.label3.Size = new System.Drawing.Size(87, 14);
             this.label3.TabIndex = 5;
             this.label3.Text = "ファイル名候補";
             // 
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(490, 84);
+            this.btnSearch.Location = new System.Drawing.Point(470, 120);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(122, 48);
+            this.btnSearch.Size = new System.Drawing.Size(142, 52);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "検索";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -116,9 +117,9 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 87);
+            this.label4.Location = new System.Drawing.Point(12, 94);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.Size = new System.Drawing.Size(63, 14);
             this.label4.TabIndex = 7;
             this.label4.Text = "型番候補";
             // 
@@ -126,12 +127,14 @@
             // 
             this.txtRenFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRenFile.Location = new System.Drawing.Point(12, 350);
+            this.txtRenFile.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtRenFile.Location = new System.Drawing.Point(12, 352);
             this.txtRenFile.Multiline = true;
             this.txtRenFile.Name = "txtRenFile";
-            this.txtRenFile.Size = new System.Drawing.Size(441, 31);
+            this.txtRenFile.Size = new System.Drawing.Size(449, 56);
             this.txtRenFile.TabIndex = 10;
-            this.txtRenFile.Text = "txtRenFile\r\ntxtRenFile";
+            this.txtRenFile.Text = "１２３４５６７８９０１２３４５６７８９０１２３４５６７\r\nｔｘｔＲｅｎＦｉｌｅ\r\nｔｘｔＲｅｎＦｉｌｅ";
+            this.txtRenFile.TextChanged += new System.EventHandler(this.txtRenFile_TextChanged);
             this.txtRenFile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRenFile_KeyDown);
             // 
             // ofdFileSelector
@@ -142,12 +145,14 @@
             // 
             this.cmbItemCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbItemCode.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cmbItemCode.FormattingEnabled = true;
-            this.cmbItemCode.Location = new System.Drawing.Point(77, 84);
+            this.cmbItemCode.Location = new System.Drawing.Point(81, 91);
             this.cmbItemCode.Name = "cmbItemCode";
-            this.cmbItemCode.Size = new System.Drawing.Size(407, 20);
+            this.cmbItemCode.Size = new System.Drawing.Size(531, 23);
             this.cmbItemCode.TabIndex = 13;
             this.cmbItemCode.Text = "cmbItemCode";
+            this.cmbItemCode.TextChanged += new System.EventHandler(this.cmbItemCode_TextChanged);
             this.cmbItemCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbItemCode_KeyDown);
             // 
             // groupBox1
@@ -160,7 +165,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(600, 66);
+            this.groupBox1.Size = new System.Drawing.Size(600, 72);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ファイル名情報";
@@ -169,10 +174,10 @@
             // 
             this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFileName.Location = new System.Drawing.Point(65, 42);
+            this.txtFileName.Location = new System.Drawing.Point(70, 46);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.ReadOnly = true;
-            this.txtFileName.Size = new System.Drawing.Size(529, 19);
+            this.txtFileName.Size = new System.Drawing.Size(524, 21);
             this.txtFileName.TabIndex = 17;
             this.txtFileName.Text = "txtFileName";
             // 
@@ -180,28 +185,28 @@
             // 
             this.txtFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilePath.Location = new System.Drawing.Point(65, 18);
+            this.txtFilePath.Location = new System.Drawing.Point(70, 20);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.ReadOnly = true;
-            this.txtFilePath.Size = new System.Drawing.Size(529, 19);
+            this.txtFilePath.Size = new System.Drawing.Size(524, 21);
             this.txtFilePath.TabIndex = 16;
             this.txtFilePath.Text = "txtFilePath";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 45);
+            this.label6.Location = new System.Drawing.Point(5, 49);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 12);
+            this.label6.Size = new System.Drawing.Size(59, 14);
             this.label6.TabIndex = 14;
             this.label6.Text = "ファイル名";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 21);
+            this.label5.Location = new System.Drawing.Point(5, 23);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 12);
+            this.label5.Size = new System.Drawing.Size(35, 14);
             this.label5.TabIndex = 13;
             this.label5.Text = "場所";
             // 
@@ -209,79 +214,92 @@
             // 
             this.stsStatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.slbStatus});
-            this.stsStatusBar.Location = new System.Drawing.Point(0, 384);
+            this.stsStatusBar.Location = new System.Drawing.Point(0, 419);
             this.stsStatusBar.Name = "stsStatusBar";
+            this.stsStatusBar.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
             this.stsStatusBar.Size = new System.Drawing.Size(624, 22);
             this.stsStatusBar.TabIndex = 17;
             this.stsStatusBar.Text = "statusStrip1";
             // 
             // slbStatus
             // 
+            this.slbStatus.Font = new System.Drawing.Font("MS UI Gothic", 9F);
             this.slbStatus.Name = "slbStatus";
-            this.slbStatus.Size = new System.Drawing.Size(54, 17);
+            this.slbStatus.Size = new System.Drawing.Size(53, 17);
             this.slbStatus.Text = "slbStatus";
             // 
             // lblRenExt
             // 
             this.lblRenExt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRenExt.AutoSize = true;
-            this.lblRenExt.Location = new System.Drawing.Point(454, 369);
+            this.lblRenExt.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblRenExt.Location = new System.Drawing.Point(514, 434);
             this.lblRenExt.Name = "lblRenExt";
-            this.lblRenExt.Size = new System.Drawing.Size(31, 12);
+            this.lblRenExt.Size = new System.Drawing.Size(47, 15);
             this.lblRenExt.TabIndex = 18;
             this.lblRenExt.Text = ".xxxx";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 115);
+            this.label2.Location = new System.Drawing.Point(12, 126);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(49, 14);
             this.label2.TabIndex = 19;
             this.label2.Text = "検索先";
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.rbtSearchNyaaSi);
             this.panel1.Controls.Add(this.rbtSearchGoogle);
             this.panel1.Controls.Add(this.rbtSearchNyaa);
-            this.panel1.Location = new System.Drawing.Point(77, 110);
+            this.panel1.Location = new System.Drawing.Point(81, 120);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(407, 22);
+            this.panel1.Size = new System.Drawing.Size(380, 52);
             this.panel1.TabIndex = 21;
+            // 
+            // rbtSearchNyaaSi
+            // 
+            this.rbtSearchNyaaSi.AutoSize = true;
+            this.rbtSearchNyaaSi.Checked = true;
+            this.rbtSearchNyaaSi.Location = new System.Drawing.Point(3, 3);
+            this.rbtSearchNyaaSi.Name = "rbtSearchNyaaSi";
+            this.rbtSearchNyaaSi.Size = new System.Drawing.Size(130, 18);
+            this.rbtSearchNyaaSi.TabIndex = 23;
+            this.rbtSearchNyaaSi.TabStop = true;
+            this.rbtSearchNyaaSi.Text = "Nyaa.si（件数：多）";
+            this.rbtSearchNyaaSi.UseVisualStyleBackColor = true;
             // 
             // rbtSearchGoogle
             // 
             this.rbtSearchGoogle.AutoSize = true;
-            this.rbtSearchGoogle.Location = new System.Drawing.Point(101, 3);
+            this.rbtSearchGoogle.Location = new System.Drawing.Point(3, 27);
             this.rbtSearchGoogle.Name = "rbtSearchGoogle";
-            this.rbtSearchGoogle.Size = new System.Drawing.Size(58, 16);
+            this.rbtSearchGoogle.Size = new System.Drawing.Size(112, 18);
             this.rbtSearchGoogle.TabIndex = 22;
-            this.rbtSearchGoogle.Text = "Google";
+            this.rbtSearchGoogle.Text = "Google（おまけ）";
             this.rbtSearchGoogle.UseVisualStyleBackColor = true;
             // 
             // rbtSearchNyaa
             // 
             this.rbtSearchNyaa.AutoSize = true;
-            this.rbtSearchNyaa.Checked = true;
-            this.rbtSearchNyaa.Location = new System.Drawing.Point(3, 3);
+            this.rbtSearchNyaa.Location = new System.Drawing.Point(143, 3);
             this.rbtSearchNyaa.Name = "rbtSearchNyaa";
-            this.rbtSearchNyaa.Size = new System.Drawing.Size(92, 16);
+            this.rbtSearchNyaa.Size = new System.Drawing.Size(159, 18);
             this.rbtSearchNyaa.TabIndex = 21;
-            this.rbtSearchNyaa.TabStop = true;
-            this.rbtSearchNyaa.Text = "NyaaTorrents";
+            this.rbtSearchNyaa.Text = "NyaaPantsu（件数：少）";
             this.rbtSearchNyaa.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 406);
+            this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnRename);
-            this.Controls.Add(this.lblRenExt);
             this.Controls.Add(this.stsStatusBar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cmbItemCode);
@@ -290,9 +308,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lstSearched);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblRenExt);
+            this.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "Form1";
-            this.Text = "えろびりねーまー powerd by NyaaTorrents";
+            this.Text = "えろびりねーまー";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
@@ -330,6 +351,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton rbtSearchGoogle;
         private System.Windows.Forms.RadioButton rbtSearchNyaa;
+        private System.Windows.Forms.RadioButton rbtSearchNyaaSi;
     }
 }
 

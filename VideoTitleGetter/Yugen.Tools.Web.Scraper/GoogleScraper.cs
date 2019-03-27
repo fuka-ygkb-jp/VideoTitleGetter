@@ -20,7 +20,7 @@ namespace Yugen.Tools.Web.Scraper
         const string cBaseURL = "https://www.google.co.jp/search?";
 
         /// <summary>ファイル名一覧のXPath</summary>
-        const string cFileNameListXPath = @"//*[@id=""rso""]/div/div/div/h3[@class=""r""]/a";
+        const string cFileNameListXPath = @"//*[@id=""rso""]/div/div/div/div/div/div/a[1]";
         #endregion
 
         /// <summary>
@@ -56,8 +56,11 @@ namespace Yugen.Tools.Web.Scraper
                     .SelectNodes(cFileNameListXPath)
                     .Select(a => new
                     {
-                        Url = a.Attributes["href"].Value.Trim(),
-                        Title = a.InnerText.Trim(),
+                        // <a>タグの中の<h3>タグ内にページタイトルが入っている
+                        Title = a.FirstChild.InnerText.Trim(),
+
+                        //Url = a.Attributes["href"].Value.Trim(),
+                        //Title = a.InnerText.Trim(),
                     });
 
                 foreach (var a in articles)

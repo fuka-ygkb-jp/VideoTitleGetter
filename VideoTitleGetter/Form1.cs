@@ -214,9 +214,7 @@ namespace VideoTitleGetter
             var CODE_FC2 = new Regex(
                 @"(fc2)[\s-_]?(?:ppv)*[\s-_]?(\d+)",
                 RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
-            //var CODE_FC2 = new Regex(
-            //    @"(fc2)[\s-_]?ppv[\s-_]?(\d+)",
-            //    RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
+
             //一般的な型番
             var CODE_NORMAL = new Regex(
                 @"([a-z]+)-?(\d+)",
@@ -291,20 +289,22 @@ namespace VideoTitleGetter
         /// <summary>ファイル名変更</summary>
         private void rename()
         {
-            //変更元ファイル確定
-            var frFullPath = Path.Combine(txtFilePath.Text, txtFileName.Text);
-
-            //変更先ファイル確定
-            var toRenName = txtRenFile.Text.Trim();     //誤入力で空白ゴミ入る事あるので除く
-            var toFileName = toRenName + lblRenExt.Text;
-            var toFullPath = Path.Combine(txtFilePath.Text, toFileName);
-
-            // ファイル名が空なら何もしない
-            if (frFullPath.Trim() == "") return;
-            if (toRenName == "") return;
-
             try
             {
+                //変更元ファイル確定
+                var frFullPath = Path.Combine(txtFilePath.Text, txtFileName.Text);
+
+                //変更先ファイル確定
+                var toRenName = txtRenFile.Text.Trim();         //誤入力で空白ゴミ入る事あるので除く
+                var toFileName = toRenName + lblRenExt.Text;    //拡張子付き
+                checkFileName(toFileName);                      //禁止文字OK？
+                var toFullPath = Path.Combine(txtFilePath.Text, toFileName);
+
+                // ファイル名が空なら何もしない
+                if (frFullPath.Trim() == "") return;
+                if (toRenName == "") return;
+
+                // 全てチェックOKならファイル名変更
                 System.IO.File.Move(frFullPath, toFullPath);
 
                 clearItems();
@@ -312,7 +312,35 @@ namespace VideoTitleGetter
             }
             catch (Exception e)
             {
-                slbStatus.Text = string.Format("ファイル名の変更が失敗しました(原因：{0})", e.Message);
+                slbStatus.Text = string.Format("ファイル名変更に失敗しました(原因：{0})", e.Message);
+            }
+        }
+
+        /// <summary>
+        /// ファイル名に使用禁止文字が含まれているかチェックする
+        /// 含まれていればエラーメッセージを表示し、ApplicationExceptionをthrowする
+        /// </summary>
+        /// <param name="fileName">チェック対象ファイル</param>
+        private void checkFileName(string fileName)
+        {
+            //ファイル名に使用禁止文字が含まれていれば0以上の位置番号がセットされる
+            var pos = fileName.IndexOfAny(Path.GetInvalidFileNameChars());
+
+            if (pos != -1)
+            {
+                var baseStr = string.Format(
+                    "「変更後ファイル名」欄の{0}文字目に使用禁止文字「{1}」が使われています。",
+                    (pos + 1),
+                    fileName.Substring(pos, 1));
+
+                MessageBox.Show(
+                    baseStr + Environment.NewLine +
+                    "全角文字に直す、または取り除いてから、再度『ファイル名変更』ボタンを押してください。",
+                    "ファイル名変更に失敗",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                throw new ApplicationException(baseStr);
             }
         }
         #endregion

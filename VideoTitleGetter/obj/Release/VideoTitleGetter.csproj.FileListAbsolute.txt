@@ -16,7 +16,6 @@ C:\usr\dev\git\VideoTitleGetter\VideoTitleGetter\bin\Release\VideoTitleGetter.ex
 C:\usr\dev\git\VideoTitleGetter\VideoTitleGetter\bin\Release\HtmlAgilityPack.dll
 C:\usr\dev\git\VideoTitleGetter\VideoTitleGetter\bin\Release\HtmlAgilityPack.pdb
 C:\usr\dev\git\VideoTitleGetter\VideoTitleGetter\bin\Release\HtmlAgilityPack.xml
-C:\usr\dev\git\VideoTitleGetter\VideoTitleGetter\obj\Release\VideoTitleGetter.csprojAssemblyReference.cache
 C:\usr\dev\git\VideoTitleGetter\VideoTitleGetter\obj\Release\VideoTitleGetter.Form1.resources
 C:\usr\dev\git\VideoTitleGetter\VideoTitleGetter\obj\Release\Yugen.VideoTitleGetter.Properties.Resources.resources
 C:\usr\dev\git\VideoTitleGetter\VideoTitleGetter\obj\Release\VideoTitleGetter.csproj.GenerateResource.cache

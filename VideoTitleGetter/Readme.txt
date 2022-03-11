@@ -103,6 +103,11 @@ Windows 7以降なら確実に動きます（作者環境はWindows 10）。
 
 
 ■更新履歴
+v2.4.1 2022/03/12
+	・次の機能追加の布石。
+	・ビルド環境更新：Visual Studio Community 2019→2022
+	・ライブラリ更新：HtmlAgilityPack.1.11.12 -> HtmlAgilityPack.1.11.42
+
 v2.4 2019/08/28
 [機能変更]
 	・ビルド環境更新：Visual Studio Community 2017→2019

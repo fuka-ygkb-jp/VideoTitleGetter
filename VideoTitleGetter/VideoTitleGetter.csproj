@@ -82,7 +82,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Yugen.Tools.Web.Scraper\h_eraScraper.cs" />
+    <Compile Include="Yugen.Tools.Web.Scraper\HEraScraper.cs" />
     <Compile Include="Yugen.Tools.Web.Scraper\IScraper.cs" />
     <Compile Include="Yugen.Tools.Web.Scraper\GoogleScraper.cs" />
     <Compile Include="Yugen.Tools.Web.Scraper\NyaaSiScraper.cs" />

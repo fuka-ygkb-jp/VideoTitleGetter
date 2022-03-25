@@ -14,7 +14,7 @@ namespace Yugen.Tools.Web.Scraper
     {
         #region "定数"
         /// <summary>UserAgent名</summary>
-        const string cUaName = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36";
+        const string cUaName = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36";
 
         /// <summary>NTのURL</summary>
         const string cBaseURL = "https://sukebei.nyaa.si/?f=0&c=0_0";

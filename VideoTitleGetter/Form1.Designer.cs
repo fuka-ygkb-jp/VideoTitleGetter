@@ -51,6 +51,7 @@
             this.rbtSearchNyaaSi = new System.Windows.Forms.RadioButton();
             this.rbtSearchGoogle = new System.Windows.Forms.RadioButton();
             this.rbtSearchNyaa = new System.Windows.Forms.RadioButton();
+            this.rbtSearchHEra = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.stsStatusBar.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -250,6 +251,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.rbtSearchHEra);
             this.panel1.Controls.Add(this.rbtSearchNyaaSi);
             this.panel1.Controls.Add(this.rbtSearchGoogle);
             this.panel1.Controls.Add(this.rbtSearchNyaa);
@@ -273,7 +275,7 @@
             // rbtSearchGoogle
             // 
             this.rbtSearchGoogle.AutoSize = true;
-            this.rbtSearchGoogle.Location = new System.Drawing.Point(3, 27);
+            this.rbtSearchGoogle.Location = new System.Drawing.Point(171, 27);
             this.rbtSearchGoogle.Name = "rbtSearchGoogle";
             this.rbtSearchGoogle.Size = new System.Drawing.Size(112, 18);
             this.rbtSearchGoogle.TabIndex = 22;
@@ -289,6 +291,16 @@
             this.rbtSearchNyaa.TabIndex = 21;
             this.rbtSearchNyaa.Text = "NyaaPantsu（件数：少）";
             this.rbtSearchNyaa.UseVisualStyleBackColor = true;
+            // 
+            // rbtSearchHEra
+            // 
+            this.rbtSearchHEra.AutoSize = true;
+            this.rbtSearchHEra.Location = new System.Drawing.Point(3, 27);
+            this.rbtSearchHEra.Name = "rbtSearchHEra";
+            this.rbtSearchHEra.Size = new System.Drawing.Size(162, 18);
+            this.rbtSearchHEra.TabIndex = 24;
+            this.rbtSearchHEra.Text = "jav.h-era.org（件数：多）";
+            this.rbtSearchHEra.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -352,6 +364,7 @@
         private System.Windows.Forms.RadioButton rbtSearchGoogle;
         private System.Windows.Forms.RadioButton rbtSearchNyaa;
         private System.Windows.Forms.RadioButton rbtSearchNyaaSi;
+        private System.Windows.Forms.RadioButton rbtSearchHEra;
     }
 }
 

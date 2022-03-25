@@ -280,7 +280,7 @@ namespace VideoTitleGetter
             if (rbtSearchNyaaSi.Checked) return new NyaaSiScraper();
             if (rbtSearchNyaa.Checked) return new NyaaPantsuScraper();
             if (rbtSearchGoogle.Checked) return new GoogleScraper();
-            //if (rbtSearchH_Era.Checked) return new hEraScraper();
+            if (rbtSearchHEra.Checked) return new HEraScraper();
 
             //デフォルト
             return new NyaaSiScraper();

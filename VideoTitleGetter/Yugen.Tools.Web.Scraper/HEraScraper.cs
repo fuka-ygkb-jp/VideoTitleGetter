@@ -9,23 +9,18 @@ using System.Web;
 
 namespace Yugen.Tools.Web.Scraper
 {
-    /// <summary>NyaaPantsuをスクレイプする</summary>
-    class NyaaPantsuScraper : IScraper
+    /// <summary>三次元糟糕物保管室をスクレイプする</summary>
+    class HEraScraper : IScraper
     {
         #region "定数"
         /// <summary>UserAgent名</summary>
         const string cUaName = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36";
 
         /// <summary>NTのURL</summary>
-        const string cBaseURL = @"https://sukebei.pantsu.cat/search?c=_&userID=0";
+        const string cBaseURL = @"http://jav.h-era.org/?";
 
         /// <summary>ファイル名一覧のXPath</summary>
-        const string cFileNameListXPath =
-            @"//table" +
-            @"/tbody[@id=""torrentListResults""]" +
-            @"/tr" +
-            @"/td[2]" +
-            @"/a";
+        const string cFileNameListXPath = @"//*/div[@class=""post-headline""]/h2/a";
         #endregion
 
         /// <summary>
@@ -41,7 +36,7 @@ namespace Yugen.Tools.Web.Scraper
             if (condition == "") return retVal;
 
             // GetWebPageAsyncメソッドを呼び出す
-            var url = cBaseURL + "&q=" + condition;
+            var url = cBaseURL + "s=" + condition;
             var htmlText = getFromWeb(new Uri((url)));
 
             // 取得失敗
@@ -89,7 +84,8 @@ namespace Yugen.Tools.Web.Scraper
             {
                 return wc.DownloadString(uri);
             }
-            catch
+            //catch (Exception ex)
+            catch 
             {
                 return "";
             }
